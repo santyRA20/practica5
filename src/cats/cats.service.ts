@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCatDto } from './dtos/create-cat.dto';
+//import { CreateCatDto } from './dtos/create-cat.dto';
 import { UpdateCatDto } from './dtos/update-cat.dto';
 
 @Injectable()
@@ -20,6 +20,10 @@ export class CatsService {
 
     allCats(): Cat[]{
         return this.cats;
+    }
+
+    getById(id: number): Cat | undefined {
+        return this.cats.find((cat) => cat.id === id)
     }
     
 }
