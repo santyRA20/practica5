@@ -36,4 +36,13 @@ export class CatsService {
         return newCat;
     }
     
+    update(id: number, cat: UpdateCatDto){
+        const index = this.cats.findIndex(c => c.id === id);
+        if (index === -1) {
+            return `Gato con ID ${id} no encontrado.`;
+        }
+
+        this.cats[index] = { ...this.cats[index], ...cat };
+        return `Gato con ID ${id} actualizado correctamente.`;
+    }
 }
