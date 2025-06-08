@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-//import { CreateCatDto } from './dtos/create-cat.dto';
+import { CreateCatDto } from './dtos/create-cat.dto';
 import { UpdateCatDto } from './dtos/update-cat.dto';
 
 @Injectable()
@@ -24,6 +24,16 @@ export class CatsService {
 
     getById(id: number): Cat | undefined {
         return this.cats.find((cat) => cat.id === id)
+    }
+
+    // metodo para guardar el nuevo registro
+    create(cat: CreateCatDto): Cat {
+        const newCat = {
+            id: (this.cats.findLast((item) => item.id > 0)?.id || 1) +1,...cat,
+        };
+
+        this.cats.push(newCat);
+        return newCat;
     }
     
 }
