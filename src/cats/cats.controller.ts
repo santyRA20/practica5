@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { CreateCatDto } from './dtos/create-cat.dto';
+//import { CreateCatDto } from './dtos/create-cat.dto';
 import { UpdateCatDto } from './dtos/update-cat.dto';
 
 
@@ -15,6 +15,13 @@ export class CatsController {
     @Get()
     allCats(): Cat[]{
         return this.catsService.allCats();
+    }
+
+    @Get(`:id`)
+    getById(@Param(`id`, new ParseIntPipe()) id: number ): Cat | undefined{
+        console.log(typeof id);
+
+        return this.catsService.getById(id);
     }
 
 }
