@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dtos/create-cat.dto';
 import { UpdateCatDto } from './dtos/update-cat.dto';
@@ -30,5 +30,10 @@ export class CatsController {
 
         return this.catsService.create(createCatDto);
     }
+
+    @Patch(':id') update( @Param('id', new ParseIntPipe()) id: number, @Body() updateCatDto: 
+    UpdateCatDto ): string {
+    return this.catsService.update(id, updateCatDto);
+  }
 
 }
