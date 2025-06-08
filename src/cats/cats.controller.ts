@@ -36,4 +36,8 @@ export class CatsController {
     return this.catsService.update(id, updateCatDto);
   }
 
+    @Delete(':id')
+    remove(@Param('id', new ParseIntPipe()) id: number): string {
+        return this.catsService.remove(id);
+    }
 }

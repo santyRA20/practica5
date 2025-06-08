@@ -45,4 +45,14 @@ export class CatsService {
         this.cats[index] = { ...this.cats[index], ...cat };
         return `Gato con ID ${id} actualizado correctamente.`;
     }
+
+    remove(id: number): string {
+        const index = this.cats.findIndex(c => c.id === id);
+        if (index === -1) {
+            return `ID ${id} no encontrado.`;
+        }
+
+        this.cats.splice(index, 1);
+        return `el ID ${id}, ha sido eliminado correctamente.`;
+    }
 }
